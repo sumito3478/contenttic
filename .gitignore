@@ -1,0 +1,6 @@
+tmp/*
+!tmp/.gitkeep
+target/*
+!target/.gitkeep
+test/org/volpts/TestMain.hx*
+/node_modules
