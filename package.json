@@ -1,0 +1,26 @@
+{
+  "name": "contenttic",
+  "version": "1.0.0-alpha.snapshot",
+  "description": "A Content Management System",
+  "main": "contenttic.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katastemattic/contenttic.git"
+  },
+  "keywords": [
+    "cms",
+    "website",
+    "site",
+    "app",
+    "web"
+  ],
+  "author": "sumito3478 <sumito3478@gmail.com>",
+  "license": "AGPLv3.0",
+  "bugs": {
+    "url": "https://github.com/katastemattic/contenttic/issues"
+  },
+  "homepage": "https://github.com/katastemattic/contenttic"
+}
