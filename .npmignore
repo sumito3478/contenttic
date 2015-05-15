@@ -1,0 +1,14 @@
+compile.sh
+test.sh
+/tmp
+/src
+target/*
+!target/contesttic.js
+!target/contesttic.js.map
+.git
+gulpfile.es6.js
+gulpfile.js
+gulpfile.js.map
+test-node.xml
+contenttic-test.min.js
+contenttic.min.js

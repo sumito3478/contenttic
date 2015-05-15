@@ -4,3 +4,10 @@ target/*
 !target/.gitkeep
 test/org/volpts/TestMain.hx*
 /node_modules
+gulpfile.js
+gulpfile.js.map
+test-node.xml
+contenttic-test.min.js
+contenttic.min.js
+lib/*
+!lib/.gitkeep
