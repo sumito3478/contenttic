@@ -33,6 +33,7 @@
     "js-yaml": "^3.3.1",
     "pg": "^4.3.0",
     "pg-native": "^1.8.1",
+    "prominence": "^0.2.0",
     "react": "^0.13.3",
     "react-jade": "^2.4.0",
     "remarkable": "^1.6.0",
