@@ -95,6 +95,7 @@ let load_stylus_resource = name => {
 let style = load_stylus_resource('style.styl');
 
 export let generate = async (options) => {
+  options = options === void 0 ? {} : options;
   let src = options.src === void 0 ? '.' : options.src;
   let dst = options.dst === void 0 ? 'static-site' : options.dst;
   let config_source = await fs.readFile(`${src}/config.toml`);
