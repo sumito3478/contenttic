@@ -2,7 +2,6 @@
   "name": "contenttic",
   "version": "1.0.0-alpha.snapshot",
   "description": "A blog framework",
-  "private": true,
   "main": "index.js",
   "bin": {
     "contenttic": "./bin/contenttic.js"
