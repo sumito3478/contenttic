@@ -9,6 +9,9 @@ target/*
 gulpfile.es6.js
 gulpfile.js
 gulpfile.js.map
+test.es6.js
+test.js
+test.js.map
 test-node.xml
 contenttic-test.min.js
 contenttic.min.js
