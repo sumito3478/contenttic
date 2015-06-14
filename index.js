@@ -1,2 +1,2 @@
-module.exports = require('./lib/contesttic.js');
+module.exports = require('./lib/contenttic.js');
 // vim:set ts=2 sw=2 et:

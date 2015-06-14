@@ -22,8 +22,10 @@ let compile = (src, dest) =>
   .pipe(babel({
     sourceMap: true,
     modules: 'common',
+    stage: 0,
+    compact: false,
     }))
-  .pipe(uglify())
+  //.pipe(uglify())
   .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest(dest));
 
@@ -35,16 +37,23 @@ let browser_compile = (src, dest) =>
     output: {
       path: __dirname,
       filename: dest
-    }
+    },
+    resolve: {
+      root: [path.join(__dirname, "bower_components")]
+    },
+    //plugins: [
+    //  new webpack.ResolverPlugin(new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main']))
+    //],
   }))
-  .pipe(uglify())
+  //.pipe(uglify())
   .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest('.'));
 
 gulp.task('node:compile', [], () => compile('src/*.js', 'lib'));
 gulp.task('browser:compile', [], () => browser_compile('lib/contenttic.js', 'contenttic.min.js'));
 gulp.task('browser:test:compile', [], () => browser_compile('lib/run-test.js', 'contenttic-test.min.js'));
-gulp.task('compile', ['node:compile', 'browser:compile', 'browser:test:compile'], () => {});
+//gulp.task('compile', ['node:compile', 'browser:compile', 'browser:test:compile'], () => {});
+gulp.task('compile', ['node:compile'], () => {});
 
 gulp.task('phantom:test', ['browser:test:compile'], () =>
   gulp
@@ -64,7 +73,8 @@ gulp.task('node:test', ['node:compile'], () =>
       })
   })));
 
-gulp.task('test', ['phantom:test', 'node:test'], () => {});
+//gulp.task('test', ['phantom:test', 'node:test'], () => {});
+gulp.task('test', ['node:test'], () => {});
 
 gulp.task('default', ['compile'], () => {});
 // vim:set ts=2 sw=2 et:

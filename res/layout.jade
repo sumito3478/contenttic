@@ -1,0 +1,111 @@
+doctype html
+html(lang='ja')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='generator' content='contenttic')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=yes')
+    meta(name='author' content='#{author}')
+    meta(name='dcterms.date' content='#{updatedAt}')
+    title #{website} - #{title}
+    link(type='application/atom+xml' rel='alternate' href='http://sld.sumito3478.info/article/all.xml')
+    script(src='http://code.jquery.com/jquery-1.11.1.min.js')
+    script.
+      contenttic = {}
+    != '\n<!--[if lt IE 9]>'
+      script(src='http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js')
+      script(src='http://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js')
+      script(src='http://cdnjs.cloudflare.com/ajax/libs/css3pie/2.0beta1/PIE_IE678.js')
+      script.
+        contenttic.oldIE = true;
+    != '\n<[endif]-->'
+    style.
+      @font-face {
+        font-family: "EB Garamond";
+        src: url("#{root}/eb-garamond-08-regular.woff");
+      }
+    link(rel='stylesheet' href='#{root}/style.css')
+    script.
+      $(document).ready(function() {
+        // Fix Android Browser and IE8
+        var userAgent = navigator.userAgent;
+        if ((
+          userAgent.indexOf('Mozilla/5.0') > -1 &&
+          userAgent.indexOf('Android ') > -1 &&
+          userAgent.indexOf('AppleWebKit') > -1 &&
+          userAgent.indexOf('Chrome') <= -1) || contenttic.oldIE ) {
+          var label = $('label#site-menu');
+          label.removeAttr('for');
+          label.click(function() {
+            $('aside#site-menu-content').toggle();
+          });
+        }
+      });
+    - if (highlighted.length > 0)
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/highlight.min.js')
+      - each lang in highlighted
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/languages/#{lang}.min.js')
+      script.
+        $(document).ready(function() {
+          hljs.configure({languages: [#{("'" + highlighted.join("','") + "'")}]});
+          $('pre').each(function(i, pre) {
+            Array.prototype.forEach.call(pre.getElementsByTagName('code'), function(code) {
+              $(code).addClass(pre.getAttribute('class'));
+              hljs.highlightBlock(code);
+            });
+          });
+        });
+  body
+    aside#site-aside
+      header#site-header
+        label#site-menu(for='site-menu-check') MENU
+        h1
+          a(href='#{root}/index.html') #{website}
+    #document-root
+      input#site-menu-check(type='checkbox' name='check[]' value='c1')
+      aside#site-menu-content
+          a(href='#{root}/index.html')
+            h1 トップページ
+          a(href='#{root}/about.html')
+            h1 このサイトについて
+          a(href='#{root}/article/all.html')
+            h1 全ての記事
+          a(href='#{root}/tags.html')
+            h1 特定のタグの記事
+          - each tag in allTags
+            a(href='#{root}/tag/#{tag}.html')
+              p #{tag}
+      #document-contents
+        h1 #{title}
+        - each content in contents
+          #document-content
+            header
+              h1
+                a(href='#{root}/#{content.permalink}') #{content.title}
+              ul.metadata
+                dt 初稿
+                dd #{content.createdAt}
+                dt 最終更新日
+                dd #{content.updatedAt}
+                dt tags
+                dd
+                  - if (content.tags.length !== 0)
+                    a(href='#{root}/tag/#{content.tags[0]}.html') #{content.tags[0]}
+                    - each tag in content.tags.slice(1)
+                      span , 
+                      a(href='#{root}/tag/#{tag}.html') #{tag}
+            .body !{content.body}
+      div
+        | <div id="disqus_thread"></div>
+        | <script type="text/javascript">
+        |     /* * * CONFIGURATION VARIABLES * * */
+        |     var disqus_shortname = 'sld3478';
+        |     /* * * DON'T EDIT BELOW THIS LINE * * */
+        |     (function() {
+        |         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        |         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        |         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        |     })();
+        | </script>
+        | <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+//- vim:set ts=2 sw=2 et:
