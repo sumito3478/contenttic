@@ -1,6 +1,6 @@
 {
   "name": "contenttic",
-  "version": "1.0.0-alpha.snapshot",
+  "version": "1.0.0-alpha.4",
   "description": "A blog framework",
   "main": "index.js",
   "bin": {
