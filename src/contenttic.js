@@ -89,6 +89,7 @@ let load_stylus_resource = name => {
     cache = await prominence(stylus(source)
       .set('filename', resource_path(name))
       .use(nib())).render();
+    return cache;
   };
 };
 
