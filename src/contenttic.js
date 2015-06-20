@@ -137,10 +137,12 @@ export let generate = async (options) => {
   let today = moment().format('YYYY-MM-DD');
   let index = {
     body: (md2html(contents.map(content => `- [${content.title}](/${content.permalink})`).join('\n'))[0]),
+    author: config.author,
     metaData: {
       title: 'INDEX',
       createdAt: today,
       updatedAt: today,
+      date: today,
       tags: [],
     },
     tags: [],
